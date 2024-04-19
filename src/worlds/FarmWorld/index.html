@@ -1,0 +1,423 @@
+<html>
+<head>
+  <!-- Circles' head scripts [REQUIRED] -->
+  <circles-start-scripts/>
+  <script src="/worlds/FarmWorld/js/animationblock1.js"></script>
+  <style>
+   #ui-container {
+    position: fixed; /* Fixed position to the viewport */
+    top: 10px; /* Distance from the top */
+    left: 50%; /* Centered horizontally */
+    transform: translateX(-50%); /* Offset the transform by half of its width */
+    z-index: 1000; /* High z-index to stay on top */
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(150, 150, 255, 0.75);
+}
+
+#currency-box {
+    background: linear-gradient(45deg, #5e00ff, #e400ff);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.currency-icon {
+    background: #00ff22;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 1.5em;
+    box-shadow: 0 0 10px rgba(0, 255, 34, 0.75);
+    width: 70px;
+    height: auto;
+}
+
+.currency-amount {
+    font-size: 2em;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.currency-label {
+    background: #000;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 0.8em;
+}
+
+</style>
+</head>
+<body>
+ 
+  <div id="ui-container">
+    <div id="currency-box">
+      <img src="/worlds/FarmWorld/assets/truck.png" alt="Truck" class="currency-icon">
+        <span class="currency-amount" id="truck-capacity-display">20</span>
+        <span class="currency-label">Canola Seeds Left</span>
+    </div>
+    <div id="currency-box">
+    <div id="harvested-crops-ui" style="display: block;">
+      <span id="harvested-crops-count">0</span>
+      <span>/ 5 Seeds In Bucket</span>
+    </div>
+    </div>
+</div>
+
+
+  <!-- this is used to create our enter UI that creates a 2D overlay to capture a user gesture for sound/mic access etc. -->
+  <circles-start-ui/>
+
+  <!-- a-scene with 'circles-properties' component [REQUIRED] -->
+  <a-scene circles_scene_properties>
+    <a-assets>
+      
+      
+
+      <img id='skyMap' src='/global/assets/textures/equirectangular/WhiteBlue.jpg' crossorigin="anonymous">
+      <a-asset-item id="corn-model"   src="/worlds/FarmWorld/assets/canola.glb"></a-asset-item>
+      <a-asset-item id="truck-model"   src="/worlds/FarmWorld/assets/truck.glb"></a-asset-item>
+      <a-asset-item id="water-model"   src="/worlds/FarmWorld/assets/wateringCan.glb" response-type="arraybuffer"></a-asset-item>
+      <a-asset-item id="bucket-model"   src="/worlds/FarmWorld/assets/bucket.glb" response-type="arraybuffer"></a-asset-item>
+      <a-asset-item id="field-model"   src="/worlds/FarmWorld/assets/dirtOne.glb"></a-asset-item>
+      <a-asset-item id="barn-model"   src="/worlds/FarmWorld/assets/barn.glb"></a-asset-item>
+      <a-asset-item id="table-model"   src="/worlds/FarmWorld/assets/table.glb"></a-asset-item>
+      <a-asset-item id="rake-model"   src="/worlds/FarmWorld/assets/rake.glb"></a-asset-item>
+      <a-asset-item id="sickle-model"   src="/worlds/FarmWorld/assets/sickle.glb"></a-asset-item>
+      <a-sound src="/worlds/FarmWorld/assets/farm.mp3" autoplay="true" loop="true" position="0 2 -5" volume="0.5"></a-sound>
+      <a-sound src="/worlds/FarmWorld/assets/farm2.mp3" autoplay="true" loop="true" position="0 2 -5" volume="0.5"></a-sound>
+      <a-asset-item id="fence-model"   src="/worlds/FarmWorld/assets/fence.glb"></a-asset-item>
+      <img id='lab360' src='/global/assets/textures/equirectangular/lab.png' crossorigin="anonymous">
+      <a-asset-item id="grass-model"   src="/worlds/FarmWorld/assets/grass.glb"></a-asset-item>
+
+
+      <!-- Circles' built-in assets [REQUIRED] -->
+      
+      <img id='campfire360' src='/global/assets/textures/equirectangular/Campfire_360.jpg' crossorigin="anonymous">
+      <circles-assets/>
+     
+    </a-assets>
+
+    <!-- Circles' built-in manager and avatar [REQUIRED] -->
+    <circles-manager-avatar/>
+   
+
+    
+    <!-- Check-win condition button -->
+    
+
+    <a-entity id="animatedCorn" 
+    class="interactive" 
+    position="1 -0.33 1" 
+    animation-mixer="clip: Grow; loop: once" 
+    scale="1 1 1" 
+    trigger-animation-on-click="id: uniqueEntityId1"
+    gltf-model=#corn-model
+    circles-interactive-object
+  ></a-entity>
+
+  <a-entity id="animatedCorn" 
+  class="interactive" 
+  position="6 -0.33 1" 
+  animation-mixer="clip: Default; loop: repeat" 
+  scale="1 1 1" 
+  trigger-animation-on-click="id: uniqueEntityId2"
+  gltf-model=#corn-model
+  circles-interactive-object
+></a-entity>
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="3.575 -0.33 1" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId3"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+<!--Second row-->
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="1 -0.33 3.392" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId4"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="3.575 -0.33 3.392" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId5"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="6 -0.33 3.392" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId6"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+<!--Third Row-->
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="1 -0.33 5.8" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId7"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="3.575 -0.33 5.8" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId8"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="6 -0.33 5.8" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId9"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+
+<!--PLANT END-->
+
+<!--Second Plant Field-->
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="-5 -0.33 1" 
+animation-mixer="clip: Grow; loop: once" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId10"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="-8 -0.33 1" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId11"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="-10 -0.33 1" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId12"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+<!--Second row-->
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="-5 -0.33 3.392" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId13"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="-8 -0.33 3.392" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId14"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="-10 -0.33 3.392" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId15"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+<!--Third Row-->
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="-5 -0.33 5.8" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId16"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="-8 -0.33 5.8" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId17"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+
+
+<a-entity id="animatedCorn" 
+class="interactive" 
+position="-10 -0.33 5.8" 
+animation-mixer="clip: Default; loop: repeat" 
+scale="1 1 1" 
+trigger-animation-on-click="id: uniqueEntityId18"
+gltf-model=#corn-model
+circles-interactive-object
+></a-entity>
+
+
+
+
+
+
+
+
+
+<a-entity id="Lablink"
+                position="-1.55 4.009 -2.879" rotation="0 -90 0" scale="1 1 1"
+                visible="false" circles-portal="img_src:#lab360; title_text:The Lab; link_url:/w/LabSpaceFarm"></a-entity>
+
+
+
+<a-entity id="Field" position="3.25177 -0.9366 2.70602" scale="0.34521 0.34521 0.34521" gltf-model="#field-model"></a-entity>
+
+<a-entity id="Field" position="-8.11 -0.9366 2.70602" scale="0.34521 0.34521 0.34521" gltf-model="#field-model"></a-entity>
+
+<a-entity id="Barn" position="-1.91 -0.9366 -8.34" scale="0.34521 0.34521 0.34521" gltf-model="#barn-model"></a-entity>
+
+<a-entity id="Table" position="-2.90 -0.9366 -10.19" scale="0.34521 0.34521 0.34521" gltf-model="#table-model"></a-entity>
+
+<a-entity id="Hoe" position="-8.11 -0.9366 2.70602" scale="0.34521 0.34521 0.34521" gltf-model="#hoe-model"></a-entity>
+
+
+<a-entity id="Fence" position="-8.80975 -1.61397 3.35424" scale="0.96441 0.96441 0.96441" gltf-model="/worlds/FarmWorld/assets/fence.glb" rotation="-180 0 -180"></a-entity>
+
+<a-entity id="Fence" position="2.64821 -1.614 3.35424" scale="0.96441 0.96441 0.96441" gltf-model="/worlds/FarmWorld/assets/fence.glb" rotation="-180 0 -180"></a-entity>
+
+<a-entity id="Grass" position="-0.84 -0.93 -0.33" scale="0.742 0.742" gltf-model="#grass-model"></a-entity>
+
+<a-entity id="Truck" 
+class="interactive" 
+position="4.39 0 -6" 
+scale="1.694 1.694 1.694" 
+gltf-model=#truck-model
+circles-interactive-object="type: scale; neutral_scale: 0.5"
+></a-entity>
+
+  <a-entity id="Trowel" 
+                class="interactive"
+                position="-0.44 -0.44 -9.80" rotation="0 180 0" scale="0.173 0.173 0.173"
+                gltf-model="/worlds/FarmWorld/assets/trowel.glb" 
+                shadow="receive:true; cast:true;"
+                circles-artefact="inspectScale: 0.1 0.1 0.1; 
+                dropRotation: 0.0 180.0 0.0; inspectPosition: -0.02 -0.83 0.611; label_offset: 0 1 0;
+                label_text: Seeder; description_on: false"
+                circles-pickup-networked></a-entity>
+
+
+  <a-entity id="Bucket" 
+                class="interactive"
+                position="-2.28 0.386 -10.29" rotation="0 90 0" scale="0.01 0.01 0.01"
+                gltf-model=#bucket-model 
+                shadow="receive:true; cast:true;"
+                circles-artefact="inspectScale:0.01 0.01 0.01; inspectRotation: 20 180 0; dropPosition: 0.598 -0.23 -11.37;
+                dropRotation: 0.0 90.0 0.0; dropScale: 0.01 0.01 0.01; inspectPosition: 0 0 1.2; label_offset: 0 1 0;
+                label_text: Seed Bucket; description_on: false"
+                circles-pickup-networked ></a-entity>
+
+
+  <a-entity id="Watercan"
+  class="interactive"
+  position="-3.65 0.323 -10.29" rotation="0.0 260.0 0.0" scale="0.2 0.2 0.2"
+  gltf-model=#water-model
+  shadow="receive:true; cast:true;"
+  circles-artefact="inspectScale:0.2 0.2 0.2; dropPosition: 9 0.4 -5.5;
+  inspectPosition: 0 0 1.2; label_offset: 0 1 0; description_on: false; label_text: Watering Can"
+                    circles-pickup-networked></a-entity>
+
+      <a-entity light="type: spot" position="1.286 2.101 9.469"></a-entity>
+    
+    <a-entity light="type: spot" position="1.007 11.90 -2.810" rotation="-90 0 0"></a-entity>
+    
+    <a-entity light="type: directional" position="-15 0 0" id="East"></a-entity>
+    <a-entity light="type: directional" position="0 0 -15" id="East"></a-entity>
+    <a-entity light="type: directional" position="15 0 0" id="East"></a-entity>
+    <a-entity light="type: directional" position="0 0 15" id="East"></a-entity>
+    <a-entity light="type: directional" position="0 15 0" id="East"></a-entity>
+    <a-sound id="correct" src="/worlds/PlaneCockpit/assets/correct.mp3"  position="0 2 -5"></a-sound>
+    <a-sound id="Bucket" src="/worlds/FarmWorld/assets/Bucket.mp3"  position="0 2 -5"></a-sound>
+
+    <a-entity id='skyBox'
+                geometry='primitive:sphere; radius:50; segments-height:6; segments-width:6;'
+                material='shader:flat; src:#skyMap; side:back;'>
+
+    <a-entity circles-checkpoint circles-spawnpoint position="-2.30 -0.55 4.182"></a-entity>
+     <a-entity circles-checkpoint circles-spawnpoint position="-2.62 -0.61 -8.772"></a-entity>
+     <a-entity circles-checkpoint circles-spawnpoint position="3.449 -0.550 -1.816"></a-entity>
+      <a-entity circles-checkpoint circles-spawnpoint position="8.745 -0.550 3.455"></a-entity>
+     <a-entity circles-checkpoint circles-spawnpoint position="3.334 -0.550 9.616"></a-entity>
+     <a-entity circles-checkpoint circles-spawnpoint position="-8.25 -0.550 9.616"></a-entity>
+     <a-entity circles-checkpoint circles-spawnpoint position="-13.2 -0.55 4.182"></a-entity>
+     <a-entity circles-checkpoint circles-spawnpoint position="-8.25 -0.550 -1.816"></a-entity>
+     <a-entity circles-checkpoint circles-spawnpoint position="1.586 0.05 -5.46"></a-entity>
+            
+    </a-entity>
+
+   
+  
+
+  <!-- Circles' end scripts [REQUIRED] -->
+  <circles-end-scripts/>
+ </body>
+</html>

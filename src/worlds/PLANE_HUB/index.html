@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Circles' head scripts [REQUIRED] -->
+    <circles-start-scripts/>
+  </head>
+
+  <body>
+    <!-- this is used to create our enter UI that creates a 2D overlay to capture a user gesture for sound/mic access etc. -->
+    <circles-start-ui/>
+
+    <!-- a-scene with 'circles-properties' component [REQUIRED] -->
+    <a-scene circles_scene_properties background="color:#D1D4D5;" fog="type:linear; color:#D1D4D5; far:30; near:0">
+
+      <a-camera position="0 1.4 3" rotation="-1 0 0"></a-camera>
+      <!-- assets -->
+      <a-assets timeout="10000">
+
+        <!-- Images -->
+        <img id='freeFall360' src='/worlds/PLANE_HUB/assets/images/freeFallImage.png' crossorigin="anonymous">
+        <img id='shootDrop360' src='/worlds/PLANE_HUB/assets/images/shootDropImage.png' crossorigin="anonymous">
+        <img id='monkeyShoot360' src='/worlds/PLANE_HUB/assets/images/monkeyShootImage.png' crossorigin="anonymous">
+
+        <!-- Environment model -->
+        <a-asset-item id="Hub-gltf" src="/worlds/PLANE_HUB/assets/models/Hub.glb"></a-asset-item>
+
+        <!-- Circles' built-in assets [REQUIRED] -->
+        <circles-assets/>
+      </a-assets>
+
+      <!-- Circles' built-in avatar [REQUIRED] -->
+      <circles-manager-avatar/>
+
+      <!-- Free fall display -->
+      <a-entity id="freeFallDisplay">
+        <!-- Ground texts -->
+        <a-entity id="groundTextFreeFall" position="0 0 -8" rotation="0 0 0">
+          <a-entity id="FreeFall" position="0 -6.63565 0" text="value: AGRIC AND FOOD HUB; color: #D1D4D5; side: double; width: 1.7; wrapCount: 30; align: center; tabSize: 4.43; font: /worlds/PLANE_HUB/assets/font/BebasNeue-Regular-msdf.json; negate: false; lineHeight: 60" scale="12 12 12"></a-entity>
+        </a-entity>
+
+        <a-entity id="FreeFall" position="-5.553 0.796 -5.399" text="value: The ARTIFACT EXHIBIT; side: double; color: #13446e; width: 1.7; wrapCount: 30; align: center; tabSize: 4.43; font: /worlds/PLANE_HUB/assets/font/BebasNeue-Regular-msdf.json; negate: false; lineHeight: 60" scale="6.4 6.4 6.4" rotation="0 0 0"></a-entity>
+
+      
+        
+        <!-- Ground texts -->
+        <a-entity geometry="primitive: plane" rotation="-90 179.9998479605043 -179.9998479605043" position="0 0.00407 0" scale="27.01367 27.01367 27.014" id="Ground" material="color: grey"></a-entity>
+
+        <a-entity id="groundTextShootDrop" position="0 0 -8" rotation="0 0 0">
+          <a-entity id="ShootDrop" position="5.985 0.796 2.156" text="value: PLANE EXPERIENCE; color: #ce800d; width: 1.7; wrapCount: 30; align: center; tabSize: 4.43; font: /worlds/PLANE_HUB/assets/font/BebasNeue-Regular-msdf.json; negate: false; lineHeight: 60" scale="6.4 6.4 6.4"></a-entity>
+        </a-entity>
+
+        <a-entity gltf-model="/worlds/PLANE_HUB/assets/models/Hub.glb" position="-0.543 -0.089 -0.674" scale="0.082 0.082 0.082" rotation="0 -180 0"></a-entity>
+
+        <!-- Links -->
+        <!-- Portal to Free Fall -->
+        <!-- <a-entity id="ShootDropLink" class="interactive" position="2.171 2.5 -6.737" rotation="0 0 0" scale="1 1 1" visible="true" shadow="receive:true; cast:true;"
+                  circles-interactive-object="neutral_scale:1.1; hovered_scale:1.13; clicked_scale:1.13;"
+                  geometry="primitive:sphere; radius:0.6; segmentsWidth:10; segmentsHeight:10;"
+                  material="src:#shootDrop360; metalness:0.1; roughness:0.25; flatShading:true; emissive:#FFF; emissiveIntensity:0.02;"
+                  link="href:/KIN_ShootAndDrop; visualAspectEnabled:false;">
+                  <a-entity text="value: Click me to be teleported; color: #ce800d; width: 1.7; wrapCount: 30; align: center; tabSize: 4.43; font: /worlds/PLANE_HUB/assets/font/Nunito-Bold-msdf.json; negate: false; lineHeight: 60" rotation="0 0 0" position="0 1 0"scale="1.5 1.5 1.5"></a-entity>
+        </a-entity> -->
+        <a-entity id="ShootDropLink"
+                position="5.825 2.500 -7.267" rotation="0 -90 0" scale="3 3 3"
+                circles-portal="img_src:#shootDrop360; title_text:Teleport to; link_url:/w/PlaneMap"></a-entity>
+         
+        <a-entity id="FreeFallLink"
+                position="-6.397 2.5 -7.267" rotation="0 -90 0" scale="3 3 3"
+                circles-portal="img_src:#freeFall360; title_text:Teleport to; link_url:/w/KIN_FreeFall"></a-entity>
+
+      <!-- Checkpoints -->
+      
+      <a-entity circles-checkpoint position="-6.1 0.05 -4"></a-entity>
+      <a-entity circles-checkpoint position="6.1 0.05 -4"></a-entity>
+      
+      <a-entity light="type:ambient; color:#FFF; intensity:3.0"></a-entity>
+      <a-entity light="type: directional; color: #FFF; intensity: 1.0" position="0 1 1"></a-entity>
+    </a-scene>
+
+    <!-- Circles' end scripts [REQUIRED] -->
+    <circles-end-scripts/>
+  </body>
+</html>

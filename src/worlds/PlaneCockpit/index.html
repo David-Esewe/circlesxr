@@ -1,0 +1,93 @@
+<html>
+<head>
+  <!-- Circles' head scripts [REQUIRED] -->
+  <circles-start-scripts/>
+  
+  <script src="/worlds/PlaneCockpit/js/Cockpit.js"></script>
+
+
+</head>
+<body>
+  <!-- this is used to create our enter UI that creates a 2D overlay to capture a user gesture for sound/mic access etc. -->
+  <circles-start-ui/>
+
+  <!-- a-scene with 'circles-properties' component [REQUIRED] -->
+  <a-scene circles_scene_properties>
+    <a-camera position="0 1.6 0" rotation="0 45 0"></a-camera>
+    
+
+    <a-assets>
+      <video id="PlaneSide" autoplay loop="false" muted src="/worlds/PlaneCockpit/assets/plane.mp4" webkit-playsinline playsinline></video>
+      <video id="PlaneFront" autoplay loop="true" muted src="/worlds/PlaneCockpit/assets/plane3.mp4" webkit-playsinline playsinline></video>
+      <video id="radar" autoplay loop="true" muted src="/worlds/PlaneCockpit/assets/radar.mp4" webkit-playsinline playsinline></video>
+      <img id='skyMap' src='/global/assets/textures/equirectangular/WhiteBlue.jpg' crossorigin="anonymous">
+      <!-- Circles' built-in assets [REQUIRED] -->
+      <img id='lab360' src='/global/assets/textures/equirectangular/lab.png' crossorigin="anonymous">
+      <circles-assets/>
+    </a-assets>
+
+    <!-- Circles' built-in manager and avatar [REQUIRED] -->
+    <circles-manager-avatar/>
+    
+    <a-sound src="/worlds/PlaneCockpit/assets/plane.mp3" autoplay="true" loop="true" position="0 2 -5" ></a-sound>
+  
+    <a-videosphere src="#PlaneFront" scale="-0.01 0.010 0.010" position="-0.67 0.969 -1.083" rotation="0 -180 0" visible="true" id="flying" ></a-videosphere>
+    <a-video src="#radar" height= "4.5" width="8" position="-0.16 0.572 -0.183" rotation="90 90 0" scale="0.221 0.211 0.276" visible="true" ></a-video>
+    <a-videosphere src="#PlaneSide" scale="-0.01 0.010 0.010" position="-0.67 3.352 -1.083" rotation="0 -180 0" visible="false" id="landing"></a-videosphere>
+    <a-entity id="Lablink"
+                position="-0.73 1.958 -0.193" rotation="0 -180 0" scale="0.4 0.4 0.4"
+                visible="false" circles-portal="img_src:#lab360; title_text:The Lab; link_url:/w/LabSpacePlane"></a-entity>
+
+                <a-entity id="Land" circles-button="pedastal_color: #313130" position="-0.10 0.536 1.106"></a-entity>
+                <a-text id="LandText" value="Land" position="0.39095 0.55561 0.86439" color="white" side="double" scale="0.57469 0.57469 0.65515" rotation="-90 -90 0"></a-text>
+    
+    
+    <a-entity geometry="primitive: cone" scale="0.027 0.110 0.072" position="0.777 0.798 -1.169" rotation="-47.5 90 90" id="ButtonUp"  material="color: red" circles-interactive-object></a-entity>
+    <a-entity geometry="primitive: cone" scale="0.027 0.110 0.072" position="0.777 0.798 -1.741" rotation="-47.5 90 -90" material="color: red" id="ButtonDown"  circles-interactive-object></a-entity>
+    <a-text id="Speed" value="50" position="0.774 0.789 -1.617" color="black" side="double" font="monoid" scale="0.811 0.811 0.790" rotation="-44.3 -90 0"></a-text>
+    <a-text id="Knots" value="Knots" position="0.686 0.699 -1.61" color="#0031a3" side="double" font="monoid" scale="0.4 0.4 0.456" rotation="-44.3 -90 0"></a-text>
+    <a-text id="SpeedName" value="Speed" position="0.887 0.905 -1.629" color="white" side="double" font="monoid"  scale="0.4 0.4 0.456" rotation="-44.3 -90 0"></a-text>
+
+
+    <a-entity id="AltButtonUp" geometry="primitive: cone" scale="0.027 0.110 0.072" position="0.777 0.798 1.323" rotation="-47.5 90 90"   material="color: red" circles-interactive-object></a-entity>
+    <a-entity id="AltButtonDown"geometry="primitive: cone" scale="0.027 0.110 0.072" position="0.777 0.798 0.765" rotation="-47.5 90 -90" material="color: red"  circles-interactive-object></a-entity>
+    <a-text id="Altitude" value="50" position="0.774 0.789 0.878" color="black" side="double"  font="monoid" negate="false" scale="0.811 0.811 0.790" rotation="-44.3 -90 0"></a-text>
+    <a-text id="Feet" value="Feet" position="0.686 0.699 0.919" color="#0031a3" side="double"  font="monoid" scale="0.4 0.4 0.456" rotation="-44.3 -90 0"></a-text>
+    <a-text id="AltitudeName" value="Altitude" position="0.887 0.905 0.824" color="#black"  font="monoid" side="double"  scale="0.4 0.4 0.456" rotation="-44.3 -90 0"></a-text>
+    <a-text value="Hello"
+        font="Future-msdf.json"
+        color="#33C3F0"
+        negate="false">
+</a-text>
+
+<a-entity circles-checkpoint circles-spawnpoint position="-2.44 0 0" rotation="0 270 0"></a-entity>
+    <a-entity geometry="" material="color: #1a1a19" position="0.76489 0.81 -0.2246" scale="0.55863 0.012 1.601" rotation="0 0 43.57859693985528"></a-entity>
+    <a-entity geometry="" material="color: #1a1a19" position="-1.87623 3.19806 0" scale="2.21585 0.506 2.21585"></a-entity>
+    <a-entity id="Cockpit" class="interactive" position="-2.20899 -4.124 -0.17906" rotation="0 90.5685845919195 0" scale="3.8165 3.8165 3.817" gltf-model="/worlds/PlaneCockpit/assets/cockpit.glb" shadow=""></a-entity>
+    <a-entity id="Throttle" class="interactive" position="-0.10 0.563 -1.708" rotation="0 90.5685845919195 0" scale="0.977 0.977 0.977"
+    
+          gltf-model="/worlds/PlaneCockpit/assets/throttle.glb"
+          animation-mixer="clip: Off; loop: once; crossFadeDuration: 0.5"
+          toggle-animation
+          circles-interactive-object></a-entity>
+          <a-text id="OffText" value="Off" position="0.21407 0.55561 -1.629" color="red" side="double" scale="0.4 0.4 0.456" rotation="-90 -90 0" ></a-text>
+          <a-text id="OnText" value="On" position="-0.38039 0.55405 -1.629" color="red" side="double" scale="0.4 0.4 0.456" rotation="-90 -90 0"></a-text>
+          <a-text id="ThrottleText" value="Throttle" position="0.39095 0.55561 -1.76637" color="White" side="double" scale="0.57469 0.57469 0.65515" rotation="-90 -90 0"></a-text>
+   <a-entity id="Wheel" class="interactive" position="0.849 0.797 -0.192" rotation="12.58 90.56 0" scale="0.977 0.977 0.977"
+          gltf-model="/worlds/PlaneCockpit/assets/wheel.glb"
+          animation-mixer="loop: repeat;"></a-entity>
+
+    <a-sound id="correct" src="/worlds/PlaneCockpit/assets/correct.mp3"  position="0 2 -5"></a-sound>
+    <a-entity light="type: ambient"></a-entity>
+    <a-entity light="type: directional" visible="" position="0.87 1.50249 0"></a-entity>
+    <a-entity light="type: directional" visible="" position="-2.54655 2.40299 -0.191"></a-entity>
+    <a-entity id='skyBox'
+                geometry='primitive:sphere; radius:50; segments-height:6; segments-width:6;'
+                material='shader:flat; src:#skyMap; side:back;'>
+    </a-entity>
+  </a-scene>
+  
+  <!-- Circles' end scripts [REQUIRED] -->
+  <circles-end-scripts/>
+ </body>
+</html>

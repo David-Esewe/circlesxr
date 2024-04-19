@@ -1,0 +1,94 @@
+<html>
+<head>
+  <!-- Circles' head scripts [REQUIRED] -->
+  <circles-start-scripts/>
+  
+  <script src="/worlds/LabSpace/js/Guide.js"></script>
+ 
+</head>
+<body>
+  <!-- this is used to create our enter UI that creates a 2D overlay to capture a user gesture for sound/mic access etc. -->
+  <circles-start-ui/>
+
+  <!-- a-scene with 'circles-properties' component [REQUIRED] -->
+  <a-scene circles_scene_properties key-handler>
+    
+
+    <a-assets>
+      <img id='skyMap' src='/global/assets/textures/equirectangular/WhiteBlue.jpg' crossorigin="anonymous">
+      <!-- Circles' built-in assets [REQUIRED] -->
+ 
+      <img id='campfire360' src='/global/assets/textures/equirectangular/map.png' crossorigin="anonymous">
+      <img id='Tech360' src='/global/assets/textures/equirectangular/Tech_360.png' crossorigin="anonymous">
+      <img id='Plane360' src='/global/assets/textures/equirectangular/Plane_360.png' crossorigin="anonymous">
+      <img id='Farm360' src='/global/assets/textures/equirectangular/Farm_360.png' crossorigin="anonymous">
+      <audio id="soundEffect" src="/worlds/LabSpace/assets/Hello.mp3"></audio>
+      <a-sound src="/worlds/FarmWorld/assets/lab.mp3" autoplay="true" loop="true" position="0 2 -5" volume="0.5"></a-sound>
+      <circles-assets/>
+    </a-assets>
+
+    <!-- Circles' built-in manager and avatar [REQUIRED] -->
+    <circles-manager-avatar/>
+    
+  <!-- Add other keys similarly, adjusting the position -->
+  <!-- Enter key -->
+ 
+
+  
+  <a-entity id="Artefact-Picture" 
+  class="interactive" 
+  position="4.407 0.192 3.262" 
+  rotation="0 0 0" 
+  scale="35 35 35" 
+  gltf-model="/worlds/LabSpace/assets/Lab.glb" 
+  shadow=""></a-entity>
+
+  <a-entity id="Trowel" 
+                class="interactive"
+                position="-2.88 1.014 -5.68" rotation="0 180 0" scale="0.068 0.068 0.068"
+                gltf-model="/worlds/FarmWorld/assets/trowel.glb" 
+                shadow="receive:true; cast:true;"
+                circles-pickup-networked>
+  </a-entity>
+
+<a-entity id="Trowel" 
+class="interactive"
+position="-2.09 1.285 -5.68" rotation="0 180 0" scale="14 14 14"
+gltf-model="/worlds/LabSpacePlane/assets/PlaneM.glb" 
+shadow="receive:true; cast:true;"
+circles-pickup-networked>
+</a-entity>
+
+
+<a-entity gltf-model="/worlds/LabSpace/assets/Guide.glb" position="-0.19 0.205 -5.3" rotation="0 180 0" scale="0.78497 0.78497 0.78497" id="Pager" circles-interactive-object ></a-entity>
+<a-entity id="othercampfire_link"
+            position="-6.26 1.086 0.350" rotation="0 0 0" scale="1 1 1"
+            circles-portal="img_src:#Plane360; title_text:The Aviation Hub; link_url:/w/PLANE_HUB"></a-entity>
+
+
+    <a-entity id="othercampfire_link"
+                position="-7.29 1.086 -4.117" rotation="0 0 0" scale="1 1 1"
+                circles-portal="img_src:#Tech360; title_text:The Science Hub; link_url:/w/TechRoom"></a-entity>
+          
+    <a-entity id="othercampfire_link"
+                position="-4.87 1.086 6.436" rotation="0 0 0" scale="1 1 1"
+                circles-portal="img_src:#Farm360; title_text:The Agriculture Hub; link_url:/w/FARM_HUB"></a-entity>
+          
+    <a-entity id='skyBox'
+                geometry='primitive:sphere; radius:50; segments-height:6; segments-width:6;'
+                material='shader:flat; src:#skyMap; side:back;'>
+    </a-entity>
+    <a-entity light="angle: 0; type: directional" position="-1.39667 3.66167 0"></a-entity>
+    <a-entity light="intensity: 3.61; type: ambient"></a-entity>
+    <a-entity light="angle: 0" position="-2.78621 2.52 -1.20074"></a-entity>
+    <a-entity light="angle: 0; type: directional" position="-2.78621 2.52 -1.20074"></a-entity>
+    <a-entity circles-checkpoint circles-spawnpoint position="-0.58 0.05 7.974"></a-entity>
+      <a-entity circles-checkpoint circles-spawnpoint position="-0.10 0.05 -2.189"></a-entity>
+      <a-entity circles-checkpoint circles-spawnpoint position="-2.62 0.05 -2.25"></a-entity>
+      <a-entity circles-checkpoint circles-spawnpoint position="-1.76 0.05 4.366"></a-entity>
+  </a-scene>
+
+  <!-- Circles' end scripts [REQUIRED] -->
+  <circles-end-scripts/>
+ </body>
+</html>

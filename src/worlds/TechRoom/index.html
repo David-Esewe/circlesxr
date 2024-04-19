@@ -1,0 +1,88 @@
+<html>
+<head>
+  <!-- Circles' head scripts [REQUIRED] -->
+  <circles-start-scripts/>
+  
+  <script src="/worlds/PlaneBase/js/keyboard.js"></script>
+  <script src="/worlds/PlaneBase/js/keybutton.js"></script>
+ 
+</head>
+<body>
+  <!-- this is used to create our enter UI that creates a 2D overlay to capture a user gesture for sound/mic access etc. -->
+  <circles-start-ui/>
+
+  <!-- a-scene with 'circles-properties' component [REQUIRED] -->
+  <a-scene circles_scene_properties key-handler>
+    
+
+    <a-assets>
+      <img id='skyMap' src='/global/assets/textures/equirectangular/WhiteBlue.jpg' crossorigin="anonymous">
+      <!-- Circles' built-in assets [REQUIRED] -->
+ 
+      <img id='campfire360' src='/global/assets/textures/equirectangular/map.png' crossorigin="anonymous">
+      <circles-assets/>
+    </a-assets>
+
+    <!-- Circles' built-in manager and avatar [REQUIRED] -->
+    <circles-manager-avatar/>
+    
+  <!-- Add other keys similarly, adjusting the position -->
+  <!-- Enter key -->
+ 
+
+  
+  <a-entity id="" position="-6.02727 -2.96956 -7.36391" rotation="" scale="0.66317 0.66317 0.66317" gltf-model="/worlds/TechRoom/assets/Lab.glb"></a-entity>
+
+  
+  <a-entity gltf-model="/worlds/TechRoom/assets/crucrible.glb" position="-13.53972 -0.22598 -1.77052" scale="0.27305 0.27305 0.273" id="Crucrible"
+  circles-artefact="inspectScale:0.2 0.2 0.2; textRotationY:0.0; inspectPosition: 0 -0.5 0; descriptionLookAt: true;
+  label_offset:0.0 1.6 0.0; arrow_position:down;
+  title:Crucrible;
+  description:'Originally the property of Canadian geophysicist Dr. David Arnold Keys (1890-1977). This equipment was used by Dr. Keys in demonstrations to school children intended to stimulate interest in science, other pieces date from his time at German physicist Wilhelm Roentgen's lab in Munich, Mcgill University & aecl.';
+  title_back:Crucible;
+  description_back:Vessels in which substances are heated to high temperatures in order to melt them, in a chemistry laboratory. ;
+  label_text:Crucrible;
+  audio:/worlds/TechRoom/assets/Crucible_IngeniumArtifact.mp3; volume:0.4;"></a-entity>
+  
+  <a-entity gltf-model="/worlds/TechRoom/assets/Book.glb" position="-13.53972 0.952 -6.79346" scale="0.55244 0.55244 0.552" rotation="143.99174236771256 -0.558 -85.32029118852117" id="Book"
+  circles-artefact="inspectScale:0.2 0.2 0.2; textRotationY:0.0; descriptionLookAt: true; inspectRotation: 35 90 100; 
+  label_offset:0.0 1.6 0.0; arrow_position:down;
+  title:Book, 1920, Artifact no. 2002.0799;
+  description: Part of a large collection of medical artifacts, archival material & trade literature transferred to CSTM in 2002 from the former History of Medicine Museum, Toronto, ON;
+  title_back:Crucible;
+  description_back: To provide list of acceptable terms to be used when completing a death certificate, in pocket-sized format;
+  label_text:Physcians Pocket Book;
+  audio:/worlds/TechRoom/assets/Book_IngeniumArtifact.mp3; volume:0.4;">></a-entity>
+
+  <a-entity gltf-model="/worlds/TechRoom/assets/microscope.glb" position="-13.53972 -0.23506 -12.51099" scale="0.55244 0.55244 0.552" rotation="" id="Microscope"></a-entity>
+  <a-entity gltf-model="/worlds/TechRoom/assets/safe.glb" position="8.12575 -0.22598 -12.16141" scale="0.27305 0.27305 0.273" id="safe" rotation="0 -90 0"></a-entity>  
+ 
+  <a-entity gltf-model="/worlds/TechRoom/assets/Pager.glb" position="-7.70771 -0.31277 -17.0741" scale="0.56096 0.56096 0.56086" id="Pager" rotation="-9.968892677481193 2.3777748497929165 0"></a-entity>
+
+  <a-entity gltf-model="/worlds/TechRoom/assets/rack.glb" position="4.33802 -0.22598 -18.56218" scale="0.27305 0.27305 0.273" id="Rack" rotation=""></a-entity>
+    <a-entity id="othercampfire_link"
+                position="-0.43 1.086 6.436" rotation="0 90 0" scale="1 1 1"
+                circles-portal="img_src:#campfire360; title_text:The Lab; link_url:/w/LabSpace"></a-entity>
+          
+                
+    <a-entity id='skyBox'
+                geometry='primitive:sphere; radius:50; segments-height:6; segments-width:6;'
+                material='shader:flat; src:#skyMap; side:back;'>
+    </a-entity>
+    <a-entity light="angle: 0; type: directional" position="-1.39667 3.66167 0"></a-entity>
+    <a-entity light="intensity: 3.61; type: ambient"></a-entity>
+    <a-entity light="angle: 0" position="-2.78621 2.52 -1.20074"></a-entity>
+    <a-entity light="angle: 0; type: directional" position="-2.78621 2.52 -1.20074"></a-entity>
+ 
+
+    <a-entity circles-checkpoint="" circles-spawnpoint="" position="-7.77495 0.05 -5.17213" ></a-entity>
+    <a-entity circles-checkpoint="" circles-spawnpoint="" position="4.28608 0.05 -5.66154"></a-entity>
+    <a-entity circles-checkpoint="" circles-spawnpoint="" position="-0.82309 0.05 0.58559"></a-entity>
+    <a-entity circles-checkpoint="" circles-spawnpoint="" position="-1.34995 0.05 -9.32645"></a-entity> 
+    <a-entity circles-checkpoint="" circles-spawnpoint="" position="-0.58 0.05 6.46305"></a-entity>
+  </a-scene>
+
+  <!-- Circles' end scripts [REQUIRED] -->
+  <circles-end-scripts/>
+ </body>
+</html>

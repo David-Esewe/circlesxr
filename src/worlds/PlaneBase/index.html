@@ -1,0 +1,160 @@
+<html>
+<head>
+  <!-- Circles' head scripts [REQUIRED] -->
+  <circles-start-scripts/>
+  
+  <script src="/worlds/PlaneBase/js/keyboard.js"></script>
+  <script src="/worlds/PlaneBase/js/keybutton.js"></script>
+ 
+</head>
+<body>
+  <!-- this is used to create our enter UI that creates a 2D overlay to capture a user gesture for sound/mic access etc. -->
+  <circles-start-ui/>
+
+  <!-- a-scene with 'circles-properties' component [REQUIRED] -->
+  <a-scene circles_scene_properties key-handler>
+    
+
+    <a-assets>
+      <img id='skyMap' src='/global/assets/textures/equirectangular/WhiteBlue.jpg' crossorigin="anonymous">
+      <!-- Circles' built-in assets [REQUIRED] -->
+      <a-asset-item id="radio-gltf" response-type="arraybuffer" src="/worlds/PlaneBase/assets/radio.glb"></a-asset-item>
+      <a-asset-item id="mail-gltf" response-type="arraybuffer" src="/worlds/PlaneBase/assets/mail.glb"></a-asset-item>
+      <a-asset-item id="book-gltf" response-type="arraybuffer" src="/worlds/PlaneBase/assets/book.glb"></a-asset-item>
+      <a-asset-item id="poster-gltf" response-type="arraybuffer" src="/worlds/PlaneBase/assets/poster.glb"></a-asset-item>
+      <img id='campfire360' src='/global/assets/textures/equirectangular/base.png' crossorigin="anonymous">
+      <img id='lab360' src='/global/assets/textures/equirectangular/lab.png' crossorigin="anonymous">
+      <circles-assets/>
+    </a-assets>
+
+    <!-- Circles' built-in manager and avatar [REQUIRED] -->
+    <circles-manager-avatar/>
+    
+    <!-- Top Numeric keys -->
+    <a-entity position="-1 1.6 -3" width="0.5" height="0.5" depth="0.1" color="#AAA" class="key" data-value="0" keyboard-button>
+      <a-text value="0" color="#000" position="0 0 0.169" align="center"></a-text> 
+    </a-entity> 
+    <a-entity position="-0.6 1.6 -3" width="0.5" height="0.5" depth="0.1" color="#AAA" class="key" data-value="1" keyboard-button>
+      <a-text value="1" color="#000" position="0 0 0.169" align="center"></a-text> 
+    </a-entity> 
+    <a-entity position="-0.2 1.6 -3" width="0.5" height="0.5" depth="0.1" color="#AAA" class="key" data-value="2" keyboard-button>
+      <a-text value="2" color="#000" position="0 0 0.169" align="center"></a-text> 
+    </a-entity> 
+    <a-entity position="0.2 1.6 -3" width="0.5" height="0.5" depth="0.1" color="#AAA" class="key" data-value="3" keyboard-button>
+      <a-text value="3" color="#000" position="0 0 0.169" align="center"></a-text> 
+    </a-entity> 
+    <a-entity position="0.6 1.6 -3" width="0.5" height="0.5" depth="0.1" color="#AAA" class="key" data-value="4" keyboard-button>
+      <a-text value="4" color="#000" position="0 0 0.169" align="center"></a-text> 
+    </a-entity> 
+    <!-- Bottom Numeric keys -->
+    <a-entity position="-1 1.2 -3" width="0.5" height="0.5" depth="0.1" color="#AAA" class="key" data-value="5" keyboard-button>
+      <a-text value="5" color="#000" position="0 0 0.169" align="center"></a-text> 
+    </a-entity> 
+    <a-entity position="-0.6 1.2 -3" width="0.5" height="0.5" depth="0.1" color="#AAA" class="key" data-value="6" keyboard-button>
+      <a-text value="6" color="#000" position="0 0 0.169" align="center"></a-text> 
+    </a-entity> 
+    <a-entity position="-0.2 1.2 -3" width="0.5" height="0.5" depth="0.1" color="#AAA" class="key" data-value="7" keyboard-button>
+      <a-text value="7" color="#000" position="0 0 0.169" align="center"></a-text> 
+    </a-entity> 
+    <a-entity position="0.2 1.2 -3" width="0.5" height="0.5" depth="0.1" color="#AAA" class="key" data-value="8" keyboard-button>
+      <a-text value="8" color="#000" position="0 0 0.169" align="center"></a-text> 
+    </a-entity> 
+    <a-entity position="0.6 1.2 -3" width="0.5" height="0.5" depth="0.1" color="#AAA" class="key" data-value="9" keyboard-button>
+      <a-text value="9" color="#000" position="0 0 0.169" align="center"></a-text> 
+    </a-entity> 
+  <!-- Add other keys similarly, adjusting the position -->
+  <!-- Enter key -->
+  <a-entity position="-0.2 0.683 -3" id="enterKey" keyboard-enter>
+    <a-text value="Enter" color="#FFF" position="0 0 0.216" align="center"></a-text>
+  </a-entity>  
+
+  <a-text id="enteredNumbersDisplay" value="" color="#FFF" position="-0.17 2 -3" wiidth="15" align="center" side="double"></a-text>
+  
+  <a-entity id="Artefact-Picture" 
+  class="interactive" 
+  position="-0.31 0.192 3.262" 
+  rotation="0 0 0" 
+  scale="0.547 0.547 0.547" 
+  gltf-model="/worlds/PlaneBase/assets/base.glb" 
+  shadow=""></a-entity>
+
+
+
+
+  <a-entity id="Radio"
+  position="-2.52 0.404 -2.44" rotation="0 -90 0" scale="0.195 0.195 0.195"
+  gltf-model="#radio-gltf"
+  circles-sphere-env-map="src:#skyMap"
+  circles-artefact="inspectScale:0.19 0.19 0.19; textRotationY:0.0; inspectRotation:0 270 0;
+                    label_offset:0.0 0.8 0.0; arrow_position:down;
+                    title:Radio Message;
+                    description:'Great Work back there! You THROTTLED ON like a trooper. Now you need to figure out what the 4 letter code for the cockpit is. Explore the base to uncover clues. The code is apparently hidden in plain sight';
+                    label_text:Radio Message;
+                    audio:#Narr_math-snd; volume:0.4;"></a-entity>
+
+ <a-entity id="Letter"
+  position="-2.34 0.844 3.225" rotation="-50 164 0" scale="0.004 0.004 0.004"
+  gltf-model="#mail-gltf"
+  circles-sphere-env-map="src:#skyMap"
+  circles-artefact="inspectScale:0.008 0.008 0.008; textRotationY:180.0; inspectRotation:45 360 0;
+                    label_offset:0.0 0.8 0.0; arrow_position:down;
+                    title:Letter from Robert;
+                    description:To Mike,
+                    In pages of a book where our stories entwine,
+                    A poster on the wall, your smile forever mine.
+                    Through the expanse of time, in skies where I soar,
+                    I'll see you soon at 4, with love evermore.;
+                    descriptionLookAt: true;
+                    label_text:Letter from Robert;
+                    audio:#Narr_math-snd; volume:0.4;"></a-entity>
+
+<a-entity id="Book"
+  position="1.736 0.470 0.944" rotation="0 -180 0" scale="0.119 0.119 0.119"
+  gltf-model="#book-gltf"
+  circles-sphere-env-map="src:#skyMap"
+  circles-artefact="inspectScale:0.2 0.2 0.2; textRotationY:180.0; inspectRotation:45 360 0;
+                    label_offset:0.0 0.8 0.0; arrow_position:down;
+                    label_on: false;
+                    description_on: false;
+                    audio:#Narr_math-snd; volume:0.4;"></a-entity>
+<a-entity id="Poster"
+  position="-2.71 0.659 9.732" rotation="0 -180 0" scale="0.208 0.208 0.208"
+  gltf-model="#poster-gltf"
+  circles-sphere-env-map="src:#skyMap"
+  circles-artefact="inspectScale:0.2 0.2 0.2; textRotationY:180.0; inspectRotation:0 0 0;
+                    label_offset:0.0 0.8 0.0; arrow_position:down;
+                    label_on: false;
+                    description_on: false;
+                    audio:#Narr_math-snd; volume:0.4;"></a-entity>
+    <a-entity id="campfire_link"
+                position="-0.23 2.813 -2.86" rotation="0 -90 0" scale="1 1 1"
+                visible="false" circles-portal="img_src:#campfire360; title_text:The Cockpit; link_url:/w/PlaneCockpit"></a-entity>
+
+    <a-entity id="othercampfire_link"
+                position="-0.42 1.5 8.874" rotation="0 90 0" scale="1 1 1"
+                circles-portal="img_src:#lab360; title_text:The Lab; link_url:/w/LabSpace"></a-entity>
+          
+    <a-entity id="sunlight" position="-1.5 2.06 6.5" rotation="-10 0 0" light="type:spot; angle:50; intensity:20.0; color:#d5e4f5; distance:15.0; penumbra:0.1;" circles-platform-shadows></a-entity>
+
+
+    <a-entity id='skyBox'
+                geometry='primitive:sphere; radius:50; segments-height:6; segments-width:6;'
+                material='shader:flat; src:#skyMap; side:back;'>
+    </a-entity>
+    <a-entity light="intensity: 3.61; type: hemisphere"></a-entity>
+
+    <a-sound src="/worlds/PlaneCockpit/assets/incorrect.mp3" autoplay="false" position="0 2 -5" id="incorrect"></a-sound>
+
+    <a-sound src="/worlds/PlaneCockpit/assets/correct.mp3" autoplay="false" position="0 2 -5" id="correct"></a-sound>
+
+    <a-entity circles-checkpoint circles-spawnpoint position="-0.58 0.05 7.974"></a-entity>
+      <a-entity circles-checkpoint circles-spawnpoint position="2.84 0.05 -1.816"></a-entity>
+      <a-entity circles-checkpoint circles-spawnpoint position="-0.10 0.05 -2.189"></a-entity>
+      <a-entity circles-checkpoint circles-spawnpoint position="-2.62 0.05 -2.25"></a-entity>
+      <a-entity circles-checkpoint circles-spawnpoint position="-1.76 0.05 4.366"></a-entity>
+  </a-scene>
+
+  <!-- Circles' end scripts [REQUIRED] -->
+  <circles-end-scripts/>
+ </body>
+</html>

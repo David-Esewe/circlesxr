@@ -10,6 +10,7 @@
     "url": "https://github.com/PlumCantaloupe/circles_framework/issues"
   },
   "dependencies": {
+    "aframe-super-keyboard": "^2.1.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "connect-mongo": "^5.0.0",
